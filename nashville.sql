@@ -27,7 +27,6 @@ CREATE TABLE nashville_housing (
 
 SELECT * 
 FROM nashville_housing;
--- WHERE ParcelID = '034 16 0A 004.00';
 
 ------------------------------------------------------
 -- change Datatype for column SaleDate to DATE Format
@@ -48,7 +47,7 @@ ORDER BY ParcelID;
 SELECT a.ParcelID, a.PropertyAddress, b.ParcelID, b.PropertyAddress, IFNULL (a.PropertyAddress, b.PropertyAddress) AS Updated_PropertyAddress
 FROM nashville.nashville_housing a
 JOIN nashville.nashville_housing b
-	on a.ParcelID = b.ParcelID
+    ON a.ParcelID = b.ParcelID
     AND a.UniqueID <> b.UniqueID
 WHERE a.PropertyAddress IS NULL;
 
@@ -56,7 +55,7 @@ SET SQL_SAFE_UPDATES = 0;
 
 UPDATE nashville_housing a
 JOIN nashville_housing b
-	on a.ParcelID = b.ParcelID
+    ON a.ParcelID = b.ParcelID
     AND a.UniqueID <> b.UniqueID
 SET a.PropertyAddress = COALESCE (a.PropertyAddress, b.PropertyAddress)
 WHERE a.PropertyAddress IS NULL;
